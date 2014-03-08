@@ -16,7 +16,8 @@ public class Portfolio implements Serializable{
 	@Id @GeneratedValue
 	private int id;
 	
-	@OneToMany(mappedBy="id")
+	@ManyToOne
+	@JoinColumn(name="id")
 	private Asset asset;
 	
 	@ManyToOne

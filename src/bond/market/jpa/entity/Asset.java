@@ -17,6 +17,7 @@ public abstract class Asset implements Serializable{
 	
 	@Id @GeneratedValue
 	private int id;
+	
 	@ManyToOne
 	@JoinColumn(name="id")
 	private Company company; //la société émettrice de l'asset

@@ -16,7 +16,7 @@ public class Investisor extends User{
 	@JoinColumn(name="user")
 	private Profile profile;
 	
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="owner")
 	private ArrayList<Portfolio> pfs;
 	
 	public Investisor(){}
