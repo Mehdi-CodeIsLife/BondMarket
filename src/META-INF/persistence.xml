@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-	<persistence-unit name="BondMarket">
+	<persistence-unit name="BondMarket" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <non-jta-data-source>java:jboss/datasources/Myds</non-jta-data-source>
+		<class>bond.market.jpa.entity.Asset</class>
+		<class>bond.market.jpa.entity.Trading</class>
+		<class>bond.market.jpa.entity.Investisor</class>
+		<class>bond.market.jpa.entity.Company</class>
+		<class>bond.market.jpa.entity.Member</class>
+		<class>bond.market.jpa.entity.Option</class>
+		<class>bond.market.jpa.entity.Transaction</class>
+		<class>bond.market.jpa.entity.StockOption</class>
+		<class>bond.market.jpa.entity.User</class>
+		<class>bond.market.jpa.entity.Portfolio</class>
+		<class>bond.market.jpa.entity.SecurityAsset</class>
+		<class>bond.market.jpa.entity.Profile</class>
+		<class>bond.market.jpa.entity.Auction</class>
+		<class>bond.market.jpa.entity.Role</class>
 		<properties>
-			<property name="hibernate.connection.username" value="root"/>
-			<property name="hibernate.connection.password" value="yagami8*"/>
-			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/database"/>
-			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
-		</properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>            
+        </properties>
 	</persistence-unit>
 </persistence>
