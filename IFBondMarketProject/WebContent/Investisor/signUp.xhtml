@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<h:body>
+	<ui:composition template="/templates/base.xhtml">
+		<ui:define name="content">
+			<div class="container">
+				<div class="sm-side-block">
+					<div class="space"></div>
+					<div class="sm-p sm-landing-page">
+
+						<form id="register" name="register" method="POST" 
+							class="fm-v clearfix sm-login-form-big uiCasLoginForm"
+							action="/IFBondMarketProject/faces/Investisor/confirm.xhtml"
+							>
+							<div></div>
+							<div class="sm-login-box1">
+								<h:panelGrid columns="3" columnClasses="titleCell">
+
+									<h:outputLabel for="email" value="Email:" />
+									<h:inputText id="email" value="#{investisorRegistration.email}">
+										<rich:validator />
+									</h:inputText>
+									<rich:message for="email" errorClass="invalid" />
+
+									<h:outputLabel for="firstname" value="First Name:" />
+									<h:inputText id="firstname"
+										value="#{investisorRegistration.firstname}">
+										<rich:validator />
+									</h:inputText>
+									<rich:message for="firstname" errorClass="invalid" />
+
+									<h:outputLabel for="lastname" value="Last Name:" />
+									<h:inputText id="lastname"
+										value="#{investisorRegistration.lastname}">
+										<rich:validator />
+									</h:inputText>
+									<rich:message for="lastname" errorClass="invalid" />
+
+									<h:outputLabel for="phoneNumber" value="Phone #:" />
+									<h:inputText id="phoneNumber"
+										value="#{investisorRegistration.phone}">
+										<rich:validator />
+									</h:inputText>
+									<rich:message for="phoneNumber" errorClass="invalid" />
+
+									<h:outputLabel for="password" value="Passowrd :" />
+									<h:inputSecret id="password" name="password"
+										value="#{investisorRegistration.password}" required="true">
+									</h:inputSecret>
+									<rich:message for="password" errorClass="invalid" />
+									<h:outputLabel for="password" value="Confirm Passowrd :" />
+									<h:inputSecret id="password2" name="confirmPassword" required="true"
+										validator="#{investisorRegistration.confirmPassword}">
+									</h:inputSecret>
+									<h:message for="password2" errorClass="invalid"
+										id="password2Error" />
+								</h:panelGrid>
+
+								<h:commandButton  type="submit" 
+								styleClass="btn btn-primary btn-large btn-block sm-mb uiCasLoginFormSubmitButton" 
+								value="Sign UP">
+								</h:commandButton>
+								<div class="clearfix"></div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
