@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">	
+<h:body>
+	<ui:composition template="/templates/base.xhtml">
+		<ui:define name="content">
+			<div class="container">
+
+				<div class="sm-side-block">
+
+					<h:link outcome="index">
+						<h:graphicImage
+							url="https://d1w70dc0osrykz.cloudfront.net/static/hg/images/sm-logo-transparent.png" />
+					</h:link>
+					<div class="space"></div>
+					<div class="sm-p sm-landing-page">
+
+						<form id="fm1" class="fm-v clearfix sm-login-form-big uiCasLoginForm">
+							
+							<h:outputText id="result" value="#{investisorRegistration.response()}" />
+						</form>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
