@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core">
+	<h:head>
+		<title>Bond Market : <ui:insert name="title">Welcome</ui:insert> page -- Miage IF</title>
+		<h:outputStylesheet name="static.css" library="css" />
+		<h:outputStylesheet name="login.css" library="css" />
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"/>
+		<ui:insert name="styleSheet"></ui:insert>
+	</h:head>
+	<h:body>
+		<div class="wrapper">
+			<div class="header">
+				<ui:include src="header.xhtml" />
+			</div>
+			<div class="content">
+				<div class="container">
+					<ui:insert name="content"></ui:insert>
+				</div>
+			</div>
+			<div class="footer">
+				<div class="container">
+					<ui:include src="footer.xhtml" />
+				</div>
+			</div>
+		</div>
+	</h:body>
+</html>

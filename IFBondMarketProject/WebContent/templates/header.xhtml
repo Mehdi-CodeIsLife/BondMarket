@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      
+      xmlns:h="http://java.sun.com/jsf/html">
+    <body>
+	    <ui:composition>
+ 			<div class="front-topbar">
+			    <div class="container">
+			        <div class="row">
+			            <div class="col-md-12 col-sm-12">
+			                <ul class="list-unstyle pull-right">
+			                    <li>
+			                    	<h:link outcome="/welcome" styleClass="active">
+	                    				<i class="fa fa-home"></i>&nbsp;&nbsp;SecondMarket
+	                    			</h:link>
+                    			</li>
+			                    <li class="sep"><span></span></li>
+			                    <li>
+			                    	<h:link outcome="">Trading</h:link>
+		                    	</li>
+			                    <li class="sep"><span></span></li>
+			                </ul>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+			<nav class="navbar" role="navigation" style="z-index:1000">
+			    <div class="container">
+			        <div class="navbar-header">
+			            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+			                <span class="sr-only">Toggle navigation</span>
+			                <span class="icon-bar"></span>
+			                <span class="icon-bar"></span>
+			                <span class="icon-bar"></span>
+			            </button>
+			            <h:link outcome="/welcome">
+			            	<h:graphicImage style="width:200;height:39px" url="https://d1w70dc0osrykz.cloudfront.net/static/hg/images/revamp/index.png" />
+			            </h:link>
+			        </div>
+				        <div class="collapse navbar-collapse navbar-ex1-collapse">
+				            <ul class="nav navbar-nav navbar-right">
+				                <li class="dropdown">
+				                    <h:link  styleClass="dropdown-toggle" data-toggle="dropdown">Assets </h:link>
+				                </li>
+				                <li class="investor-login">
+				                    <h:link  styleClass="uiHeaderLoginLink" outcome="/Investisor/login.xhtml">Investor Login</h:link>
+				                </li>
+				            </ul>
+				        </div>
+				    </div>
+				</nav>
+	    </ui:composition>
+    </body>
+</html>

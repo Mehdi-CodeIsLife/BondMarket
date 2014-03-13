@@ -1,0 +1,8 @@
+Spider mode enabled. Check if remote file exists.
+--2014-03-12 05:16:51--  http://www.example.com/
+Resolving www.example.com (www.example.com)... 2606:2800:220:6d:26bf:1447:1097:aa7, 93.184.216.119
+Connecting to www.example.com (www.example.com)|2606:2800:220:6d:26bf:1447:1097:aa7|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1270 (1.2K) [text/html]
+Remote file exists and could contain links to other resources -- retrieving.
+

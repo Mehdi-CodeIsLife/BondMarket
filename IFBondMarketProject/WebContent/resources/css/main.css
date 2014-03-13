@@ -1,0 +1,38 @@
+@CHARSET "UTF-8";
+
+.wrapper{
+	min-height: 600px;
+	width: 1024px;
+}
+
+.header{
+	height: 250px;
+	width: 100%;
+}
+
+.header .nav{
+	height: 120px;
+	width: 100%;
+}
+
+.header .nav .rightList{
+	width: 40%;
+	float: right;
+}
+
+.header  li{
+	float: right;
+	width: 50%
+}
+
+.header .subNav{
+	height: 100px;
+	width: 100%;
+}
+
+.footer{
+	bottom: 0;
+	height: 100px;
+	text-align: right;
+}
+

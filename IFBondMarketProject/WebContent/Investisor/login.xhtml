@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:body>
+	<ui:composition template="/templates/base.xhtml">
+		<ui:define name="content">
+			<div class="container">
+
+				<div class="sm-side-block">
+
+					<h:link outcome="index">
+						<h:graphicImage
+							url="https://d1w70dc0osrykz.cloudfront.net/static/hg/images/sm-logo-transparent.png" />
+					</h:link>
+					<div class="space"></div>
+					<div class="sm-p sm-landing-page">
+
+						<form id="fm1"
+							class="fm-v clearfix sm-login-form-big uiCasLoginForm"
+							action="/cas/login?service=https%3A%2F%2Fwww.secondmarket.com%2Fj_spring_cas_security_check"
+							method="post">
+							<div></div>
+							<div class="sm-login-box1">
+								<div class="sm-input-prepend sm-mb clearfix">
+									<span class="sm-add-on sm-l"> <h:graphicImage
+											url="https://d1w70dc0osrykz.cloudfront.net/static/hg/images/user-mail-icon.png" />
+									</span>
+									<h:inputText
+										styleClass="sm-l sm-login-input uiCasLoginFormUsernameInput"
+										id="j_username" value=""></h:inputText>
+									<script type="text/javascript" language="JavaScript">
+                            document.forms['fm1'].elements['username'].focus();
+                        </script>
+								</div>
+								<div class="clearfix"></div>
+								<div class="sm-input-prepend clearfix">
+									<span class="sm-add-on sm-l"> <h:graphicImage
+											url="https://d1w70dc0osrykz.cloudfront.net/static/hg/images/user-password-icon.png" />
+									</span>
+									<h:inputSecret id="j_password" value="password"
+										styleClass="sm-login-input uiCasLoginFormPasswordInput"
+										size="15" autocomplete="true">
+									</h:inputSecret>
+								</div>
+								<div class="loginbut">
+									<h:commandButton value="Click here"
+										action="../j_spring_security_check" type="submit"
+										styleClass="btn btn-primary btn-large btn-block sm-mb uiCasLoginFormSubmitButton"> 
+								</h:commandButton>
+								</div>
+								<h:link outcome="">Create a new account</h:link>
+								<div class="clearfix"></div>
+
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
