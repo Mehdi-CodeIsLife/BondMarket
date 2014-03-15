@@ -1,10 +1,9 @@
 package jboss.as.bond.market.helper;
 
-import javax.inject.Inject;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
+import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
 import javax.transaction.HeuristicMixedException;
 import javax.transaction.HeuristicRollbackException;
 import javax.transaction.NotSupportedException;
@@ -21,8 +20,12 @@ public class InvestisorHelper  {
 	
 	private Investisor inv;
 	
-	@Inject
-    private EntityManager em;  
+	@PersistenceContext
+	EntityManager em;
+	
+	@Resource
+    protected UserTransaction t; 
+	
 	
 	public void bindUser(Investisor investisor){
 		this.setInv(investisor);
@@ -37,51 +40,13 @@ public class InvestisorHelper  {
 		inv.setProfile(new Profile());
 	}
 	
-	public void save(){
+	public void save() throws NotSupportedException, SystemException, SecurityException, IllegalStateException, RollbackException, HeuristicMixedException, HeuristicRollbackException{
+		t.begin();
+		em.persist(this.inv);
+		t.commit();
 		
-		
-		try {
-			InitialContext ic = new InitialContext();
-			UserTransaction utx = (UserTransaction) ic.lookup("java:comp/UserTransaction");
-			utx.begin();
-			em.persist(this.inv);
-			utx.commit();
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			em.close();
-		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			em.close();
-		} catch (NotSupportedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			em.close();
-		} catch (SystemException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			em.close();
-		} catch (RollbackException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			em.close();
-		} catch (HeuristicMixedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			em.close();
-		} catch (HeuristicRollbackException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			em.close();
-		} catch (NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 	}
 	
-
 	public Investisor getInv() {
 		return inv;
 	}

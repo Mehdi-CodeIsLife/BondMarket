@@ -1,15 +1,30 @@
 package jboss.as.bond.market.util;
 
+import java.util.logging.Logger;
+
 import javax.enterprise.inject.Produces;
+import javax.enterprise.inject.spi.InjectionPoint;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 public class Resources {
 	
-	 // use @SuppressWarnings to tell IDE to ignore warnings about field not being referenced directly
+    // Expose an entity manager using the resource producer pattern
+    @SuppressWarnings("unused")
+    @PersistenceContext
     @Produces
-    @PersistenceContext (unitName = "IFBondMarketProject")  
     private EntityManager em;
 
+    @Produces
+    Logger getLogger(InjectionPoint ip) {                            
+        String category = ip.getMember().getDeclaringClass().getName();
+        return Logger.getLogger(category);
+    }
+
+    @Produces
+    FacesContext getFacesContext() {                                 
+        return FacesContext.getCurrentInstance();
+    }
  
 }

@@ -11,67 +11,70 @@
 	<ui:composition template="/templates/base.xhtml">
 		<ui:define name="content">
 			<div class="container">
-				<div class="sm-side-block">
+				<div class="col-md-8 col-md-offset-2">
 					<div class="space"></div>
 					<div class="sm-p sm-landing-page">
 
-						<form id="register" name="register" method="POST" 
-							class="fm-v clearfix sm-login-form-big uiCasLoginForm"
-							action="/IFBondMarketProject/faces/Investisor/confirm.xhtml"
-							>
-							<div></div>
-							<div class="sm-login-box1">
-								<h:panelGrid columns="3" columnClasses="titleCell">
+						<h:form>
+							<h:panelGrid columns="3" columnClasses="titleCell">
+								<h:outputLabel for="email" value="Email:" />
+								<h:inputText id="email" value="#{investisorRegistration.email}">
+									<rich:validator />
+								</h:inputText>
+								<rich:message for="email" errorClass="invalid" />
 
-									<h:outputLabel for="email" value="Email:" />
-									<h:inputText id="email" value="#{investisorRegistration.email}">
-										<rich:validator />
-									</h:inputText>
-									<rich:message for="email" errorClass="invalid" />
+								<h:outputLabel for="firstname" value="First Name:" />
+								<h:inputText id="firstname" value="#{investisorRegistration.firstname}">
+									<rich:validator />
+								</h:inputText>
+								<rich:message for="firstname" errorClass="invalid" />
 
-									<h:outputLabel for="firstname" value="First Name:" />
-									<h:inputText id="firstname"
-										value="#{investisorRegistration.firstname}">
-										<rich:validator />
-									</h:inputText>
-									<rich:message for="firstname" errorClass="invalid" />
 
-									<h:outputLabel for="lastname" value="Last Name:" />
-									<h:inputText id="lastname"
-										value="#{investisorRegistration.lastname}">
-										<rich:validator />
-									</h:inputText>
-									<rich:message for="lastname" errorClass="invalid" />
+								<h:outputLabel for="lastname" value="Last Name:" />
+								<h:inputText id="lastname" value="#{investisorRegistration.lastname}">
+									<rich:validator />
+								</h:inputText>
+								<rich:message for="lastname" errorClass="invalid" />
 
-									<h:outputLabel for="phoneNumber" value="Phone #:" />
-									<h:inputText id="phoneNumber"
-										value="#{investisorRegistration.phone}">
-										<rich:validator />
-									</h:inputText>
-									<rich:message for="phoneNumber" errorClass="invalid" />
+								<h:outputLabel for="termTrading" value="Term Trading (short or long):" />
+								<h:inputText id="termTrading" value="#{investisorRegistration.termTrading}">
+									<rich:validator />
+								</h:inputText>
+								<rich:message for="termTrading" errorClass="invalid" />
 
-									<h:outputLabel for="password" value="Passowrd :" />
-									<h:inputSecret id="password" name="password"
-										value="#{investisorRegistration.password}" required="true">
-									</h:inputSecret>
-									<rich:message for="password" errorClass="invalid" />
-									<h:outputLabel for="password" value="Confirm Passowrd :" />
-									<h:inputSecret id="password2" name="confirmPassword" required="true"
-										validator="#{investisorRegistration.confirmPassword}">
-									</h:inputSecret>
-									<h:message for="password2" errorClass="invalid"
-										id="password2Error" />
-								</h:panelGrid>
-
-								<h:commandButton  type="submit" 
-								styleClass="btn btn-primary btn-large btn-block sm-mb uiCasLoginFormSubmitButton" 
-								value="Sign UP">
-								</h:commandButton>
-								<div class="clearfix"></div>
-							</div>
-						</form>
-					</div>
+								<h:outputLabel for="password" value="Passowrd :" />
+								<h:inputSecret id="password" name="password"
+									value="#{investisorRegistration.password}" required="true">
+								</h:inputSecret>
+								<rich:message for="password" errorClass="invalid" />
+								
+								<h:outputLabel for="confirmPassword" value="confirmPassword :" />
+								<h:inputSecret id="confirmPassword" name="confirmPassword"
+									value="#{investisorRegistration.confirmPassword}" required="true">
+								</h:inputSecret>
+								<rich:message for="confirmPassword" errorClass="invalid" />
+								
+								<h:outputLabel for="derivatives" value="Use derivatives ?:" />
+								<h:inputText id="derivatives" value="#{investisorRegistration.derivatives}">
+									<rich:validator />
+								</h:inputText>
+								<rich:message for="termTrading" errorClass="invalid" />
+								
+								<h:outputLabel for="market_capitalization" value="market_capitalization:" />
+								<h:inputText id="market_capitalization" value="#{investisorRegistration.market_capitalization}">
+									<rich:validator />
+								</h:inputText>
+								<rich:message for="termTrading" errorClass="invalid" />
+								
+								
+							</h:panelGrid>
+							
+							<h:commandButton action="#{investisorRegistration.response}"
+								value="Add User" />
+							<div class="clearfix"></div>
+					</h:form>
 				</div>
+			</div>
 			</div>
 		</ui:define>
 	</ui:composition>

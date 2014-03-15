@@ -73,9 +73,11 @@
 
     create table BondMarket.Profile (
         id integer not null auto_increment unique,
+        derivatives varchar(255),
         firstname varchar(255),
         lastname varchar(255),
-        phone varchar(255),
+        capitalization varchar(255),
+        term_trading varchar(255),
         primary key (id)
     );
 

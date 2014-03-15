@@ -4,37 +4,7 @@
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd">
  <managed-bean>
   <managed-bean-name>investisorRegistration</managed-bean-name>
-  <managed-bean-class>jboss.as.bond.market.mb.controller.InvestisorRegistration</managed-bean-class>
+  <managed-bean-class>jboss.as.bond.market.mb.InvestisorRegistration</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
-  <managed-property>
-   <property-name>confirmPassword</property-name>
-   <property-class>java.lang.String</property-class>
-   <value/>
-  </managed-property>
-  <managed-property>
-   <property-name>email</property-name>
-   <property-class>java.lang.String</property-class>
-   <value/>
-  </managed-property>
-  <managed-property>
-   <property-name>firstname</property-name>
-   <property-class>java.lang.String</property-class>
-   <value/>
-  </managed-property>
-  <managed-property>
-   <property-name>lastname</property-name>
-   <property-class>java.lang.String</property-class>
-   <value/>
-  </managed-property>
-  <managed-property>
-   <property-name>password</property-name>
-   <property-class>java.lang.String</property-class>
-   <value/>
-  </managed-property>
-  <managed-property>
-   <property-name>phone</property-name>
-   <property-class>java.lang.String</property-class>
-   <value/>
-  </managed-property>
  </managed-bean>
 </faces-config>
