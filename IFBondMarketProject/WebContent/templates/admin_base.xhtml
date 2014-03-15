@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+      
+  		<f:loadBundle basename="resources" var="msg" />
+	<h:head>
+		<title>Bond Market : <ui:insert name="title">Welcome</ui:insert> -- Admin -- Miage IF</title>
+		<h:outputStylesheet name="bootstrap.min.css" library="css" />
+		<h:outputStylesheet name="bootstrap-theme.min.css" library="css" />
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"/>
+		<h:outputStylesheet name="dashboard.css" library="css" />
+	<ui:insert name="stylesheet"></ui:insert>
+	</h:head>
+		
+	<h:body>
+		<ui:insert name="content"></ui:insert>		
+	</h:body>
+</html>

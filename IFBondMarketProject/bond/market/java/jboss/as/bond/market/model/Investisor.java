@@ -43,6 +43,19 @@ public class Investisor extends User implements java.io.Serializable {
 
 	public Investisor() {
 	}
+	
+
+	public Investisor( Profile profile, Date createdAt, String email,
+			Boolean isActive, String username, String password) {
+		this.profile = profile;
+		this.createdAt = createdAt;
+		this.email = email;
+		this.isActive = isActive;
+		this.username = username;
+		this.password = password;
+	}
+
+
 
 	public Investisor(int id) {
 		this.id = id;

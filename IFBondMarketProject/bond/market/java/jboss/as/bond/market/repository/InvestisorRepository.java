@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.transaction.UserTransaction;
 
 import jboss.as.bond.market.model.Investisor;
 
@@ -15,6 +16,9 @@ public class InvestisorRepository {
 	
 	@Inject
     private EntityManager em;
+
+    @Inject
+    private UserTransaction utx;
 	
 	public Investisor findById(Long id) {
         return em.find(Investisor.class, id);

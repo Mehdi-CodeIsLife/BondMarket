@@ -23,18 +23,21 @@ public class Profile implements java.io.Serializable {
 	private Integer id;
 	private String firstname;
 	private String lastname;
-	private String phone;
 	private Investisor investisor;
+	private String  termTrading;
+	private String market_capitalization;
+	private String derivatives;
 	
 	public Profile() {
 	}
-
-	public Profile(String firstname, String lastname, String phone,
-			Investisor investisor) {
+	
+	public Profile(String firstname, String lastname, String termTrading,
+			String market_capitalization, String derivatives) {
 		this.firstname = firstname;
 		this.lastname = lastname;
-		this.phone = phone;
-		this.investisor = investisor;
+		this.termTrading = termTrading;
+		this.market_capitalization = market_capitalization;
+		this.derivatives = derivatives;
 	}
 
 	@Id
@@ -66,13 +69,13 @@ public class Profile implements java.io.Serializable {
 		this.lastname = lastname;
 	}
 
-	@Column(name = "phone")
-	public String getPhone() {
-		return this.phone;
+	@Column(name = "term_trading")
+	public String getTermTrading() {
+		return this.termTrading;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setTermTrading(String term_trading) {
+		this.termTrading = term_trading;
 	}
 
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "profile")
@@ -83,5 +86,22 @@ public class Profile implements java.io.Serializable {
 	public void setInvestisors(Investisor investisor) {
 		this.investisor = investisor;
 	}
+	@Column(name="capitalization")
+	public String getMarket_capitalization() {
+		return market_capitalization;
+	}
+		
+	public void setMarket_capitalization(String market_capitalization) {
+		this.market_capitalization = market_capitalization;
+	}
+	@Column(name="derivatives")
+	public String getDerivatives() {
+		return derivatives;
+	}
+
+	public void setDerivatives(String derivatives) {
+		this.derivatives = derivatives;
+	}
+	
 
 }
