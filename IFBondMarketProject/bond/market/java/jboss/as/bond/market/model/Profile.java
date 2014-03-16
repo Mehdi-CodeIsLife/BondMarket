@@ -20,7 +20,7 @@ import javax.persistence.Table;
 @Table(name = "Profile", catalog = "BondMarket")
 public class Profile implements java.io.Serializable {
 
-	private Integer id;
+	private int id;
 	private String firstname;
 	private String lastname;
 	private Investisor investisor;
@@ -43,11 +43,11 @@ public class Profile implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
-	public Integer getId() {
+	public int getId() {
 		return this.id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

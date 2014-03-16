@@ -6,6 +6,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/bond/market/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/bond/markte/test/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/bond/market/test/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/bond/market/test"/>
         <property name="context-root" value="IFBondMarketProject"/>
         <property name="java-output-path" value="/IFBondMarketProject/build/classes"/>
     </wb-module>

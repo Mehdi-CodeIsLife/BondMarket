@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core">
+
+   <h:body>
+   			
+   
+   		<ui:composition template="/Investisor/inv_dashboard.xhtml">
+			<ui:define name="inv_content">
+				<h2><h:outputText value="">Companies List:</h:outputText></h2>
+				<h:dataTable value="#{companyController.assets}" var="a"
+		    			styleClass="table table-hover">
+ 
+    			<h:column>
+    				<!-- column header -->
+    				<f:facet name="header">#ID</f:facet>
+    				<!-- row record -->
+    				#{c.id}
+    			</h:column>
+ 
+    			<h:column>
+    				<f:facet name="header">Company Name</f:facet>
+    				#{c.strike}
+    			</h:column>
+ 
+    			<h:column>
+    				<f:facet name="header">Category</f:facet>
+    				#{c.company.name}
+    			</h:column>		
+    			<h:column>
+    				<f:facet name="header">Category</f:facet>
+    				#{c.company.name}
+    			</h:column>				
+    		</h:dataTable>
+ 
+			</ui:define>
+   		</ui:composition>
+   </h:body>
+   
+</html>

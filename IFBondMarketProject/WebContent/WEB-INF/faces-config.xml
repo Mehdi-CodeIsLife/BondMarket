@@ -7,4 +7,9 @@
   <managed-bean-class>jboss.as.bond.market.mb.InvestisorRegistration</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
+ <managed-bean>
+  <managed-bean-name>loginHandlerBean</managed-bean-name>
+  <managed-bean-class>jboss.as.bond.market.mb.LoginHandlerBean</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
 </faces-config>

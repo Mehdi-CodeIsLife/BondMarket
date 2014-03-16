@@ -1,32 +1,18 @@
 package jboss.as.bond.market.mb;
 
-import java.util.Date;
-
-import javax.annotation.Resource;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.HeuristicMixedException;
-import javax.transaction.HeuristicRollbackException;
-import javax.transaction.NotSupportedException;
-import javax.transaction.RollbackException;
-import javax.transaction.SystemException;
-import javax.transaction.UserTransaction;
+import javax.faces.bean.SessionScoped;
 
-import jboss.as.bond.market.model.Investisor;
-import jboss.as.bond.market.model.Profile;
+import jboss.as.bond.market.helper.InvestisorHelper;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class InvestisorRegistration {
+
 	
-	@PersistenceContext
-	EntityManager em;
-	
-	@Resource
-    protected UserTransaction t; 
-	
+	@EJB
+	private InvestisorHelper invHelper;
 	
 	private String email;
 	private String password;
@@ -46,16 +32,13 @@ public class InvestisorRegistration {
 		this.derivatives = derivatives;
 	}
 
-	public String response() throws NotSupportedException, SystemException, SecurityException, IllegalStateException, RollbackException, HeuristicMixedException, HeuristicRollbackException {
-		Profile profile = new Profile(firstname, lastname, termTrading, 
-									  market_capitalization, derivatives);
-		Investisor inv = new Investisor( profile, new Date(), email, 
-										 false, firstname+"."+lastname, password);
-		t.begin();
-		em.persist(inv);
-		t.commit();
+	public String response(){
+		invHelper.fillProprieties(password, email, lastname, firstname, market_capitalization, termTrading, derivatives);
+		invHelper.save(invHelper.getInv());
 		return "confirm";
 	}
+
+	
 
 	public String getFirstname() {
 		return firstname;

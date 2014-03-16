@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core">
+
+   <h:body>
+   		<ui:composition template="/Investisor/inv_dashboard.xhtml">
+			<ui:define name="inv_content">
+				<h2><h:outputText value="">Trading Details</h:outputText></h2>
+				<h:dataTable value="#{tradController.trads()}" var="t"
+		    			styleClass="table table-hover">
+    			
+    			<h:column>
+    				<f:facet name="header">Déposé le :</f:facet>
+    				#{t.calledAt}
+    			</h:column>
+    			
+				<h:column>
+    				<f:facet name="header">Propriétaire</f:facet>
+    				#{t.investisorByOwner.username}
+    			</h:column>
+    			 
+    			<h:column>
+    				<f:facet name="header">Strike</f:facet>
+    				#{t.price}
+    			</h:column>
+				<h:column>
+    				<f:facet name="header">Asset</f:facet>
+    				#{t.asset.id}
+    			</h:column>
+ 
+    			<h:column>
+    				<f:facet name="header">Quantity</f:facet>
+    				#{t.quantity}
+    			</h:column>
+    		</h:dataTable>
+ 			<div class="action">
+ 				<h:button value="" styleClass="btn btn-info btn-lg btn-block">Excute the Transaction</h:button>
+ 			</div>
+			</ui:define>
+   		</ui:composition>
+   </h:body>
+   
+</html>

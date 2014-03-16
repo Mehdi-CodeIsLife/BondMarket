@@ -1,50 +1,61 @@
 package jboss.as.bond.market.helper;
 
-import javax.annotation.Resource;
-import javax.persistence.EntityManager;
+import java.util.Date;
+
+import javax.ejb.EJB;
+import javax.ejb.Stateful;
 import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
-import javax.transaction.HeuristicMixedException;
-import javax.transaction.HeuristicRollbackException;
-import javax.transaction.NotSupportedException;
-import javax.transaction.RollbackException;
-import javax.transaction.SystemException;
-import javax.transaction.UserTransaction;
 
 import jboss.as.bond.market.model.Investisor;
 import jboss.as.bond.market.model.Profile;
 import jboss.as.bond.market.model.Role;
+import jboss.as.bond.market.repository.InvestisorRepository;
 import jboss.as.bond.market.repository.RoleRepository;
 
+@Stateful
 public class InvestisorHelper  {
 	
 	private Investisor inv;
 	
-	@PersistenceContext
-	EntityManager em;
+	@EJB
+	private InvestisorRepository invRep;
 	
-	@Resource
-    protected UserTransaction t; 
+	@EJB
+	private RoleRepository roleRep;
 	
-	
+	public InvestisorHelper() {
+	}
+
 	public void bindUser(Investisor investisor){
 		this.setInv(investisor);
 	}
 	
+	public Investisor getById(int id){
+		return this.invRep.find(id);
+	}
+	
 	public void buildInvestisor(){
 		this.inv = new Investisor();
-		Role role = new RoleRepository().findByName("investisor");
+		Role role = roleRep.findByName("investisor");
 		if(role == null)
 			throw new NoResultException();
-		inv.setRole(role);
+		
+		inv.addRole(role);
+		inv.setIsActive(false);
+		inv.setCreatedAt(new Date());
 		inv.setProfile(new Profile());
 	}
 	
-	public void save() throws NotSupportedException, SystemException, SecurityException, IllegalStateException, RollbackException, HeuristicMixedException, HeuristicRollbackException{
-		t.begin();
-		em.persist(this.inv);
-		t.commit();
-		
+	public void fillProprieties(String password, String email, String lastname, String firstname, String market_capitalization, String termTrading, String derivatives) {
+		buildInvestisor();
+		getInv().setEmail(email);
+		getInv().setUsername(email);
+		getInv().setPassword(password);
+		getInv().setProfile(new Profile(firstname, lastname, termTrading, market_capitalization, derivatives));
+	}
+	
+	public void save(Investisor user){
+		invRep.save(user);
 	}
 	
 	public Investisor getInv() {
@@ -54,6 +65,8 @@ public class InvestisorHelper  {
 	public void setInv(Investisor inv) {
 		this.inv = inv;
 	}
+	
+	
 	
 	
 	
