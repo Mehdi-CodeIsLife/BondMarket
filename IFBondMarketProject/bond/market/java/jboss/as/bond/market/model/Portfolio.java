@@ -2,14 +2,19 @@ package jboss.as.bond.market.model;
 // default package
 // Generated Mar 13, 2014 4:27:29 AM by Hibernate Tools 3.4.0.CR1
 
+import static javax.persistence.GenerationType.IDENTITY;
+
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -20,28 +25,31 @@ import javax.persistence.Table;
 @Table(name = "Portfolio", catalog = "BondMarket")
 public class Portfolio implements java.io.Serializable {
 
-	private Integer id;
+	private int id;
 	private Investisor investisor;
-	private Integer quantity;
-	private Integer asset;
+	private String title;
+	
+
+	private Set<PortfolioLine> pfLines = new HashSet<PortfolioLine>(0);
 
 	public Portfolio() {
 	}
-
-	public Portfolio(Investisor investisor, Integer quantity, Integer asset) {
+	
+	public Portfolio(Investisor investisor, String title,
+			Set<PortfolioLine> pfLines) {
 		this.investisor = investisor;
-		this.quantity = quantity;
-		this.asset = asset;
+		this.title = title;
+		this.pfLines = pfLines;
 	}
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
-	public Integer getId() {
+	public int getId() {
 		return this.id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -54,23 +62,22 @@ public class Portfolio implements java.io.Serializable {
 	public void setInvestisor(Investisor investisor) {
 		this.investisor = investisor;
 	}
-
-	@Column(name = "quantity")
-	public Integer getQuantity() {
-		return this.quantity;
+	
+	@OneToMany(mappedBy="pf")
+	public Set<PortfolioLine> getPfLines() {
+		return pfLines;
 	}
 
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
+	public void setPfLines(Set<PortfolioLine> pfLines) {
+		this.pfLines = pfLines;
 	}
-
-	@Column(name = "asset")
-	public Integer getAsset() {
-		return this.asset;
+	@Column(name="title")
+	public String getTitle() {
+		return title;
 	}
-
-	public void setAsset(Integer asset) {
-		this.asset = asset;
+	
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 }

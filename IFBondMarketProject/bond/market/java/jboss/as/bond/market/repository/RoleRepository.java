@@ -1,31 +1,28 @@
 package jboss.as.bond.market.repository;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+import javax.persistence.Query;
 
 import jboss.as.bond.market.model.Role;
 
+@Stateless
 public class RoleRepository {
 	
 	@PersistenceContext
 	EntityManager em;
   
+	public RoleRepository(){}
 	
 	public Role findById(Long id) {
         return em.find(Role.class, id);
     }
 
     public Role findByName(String name) {
-    	
-    	
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<Role> criteria = cb.createQuery(Role.class);
-        Root<Role> role = criteria.from(Role.class);
-        criteria.select(role).where(cb.equal(role.get("name"), name));
-        return em.createQuery(criteria).getSingleResult();
-    }
+    	Query q = em.createQuery("SELECT r FROM Role r WHERE r.name = :name");
+        q.setParameter("name", name);
+        return (Role) q.getSingleResult();
+      }
 	
 }

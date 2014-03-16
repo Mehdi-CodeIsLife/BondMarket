@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:body>
+	<ui:composition template="/templates/base.xhtml">
+
+		<ui:define name="header_link">
+			<h:link outcome="/Investisor/inv_dashboard">Your Dashboard</h:link>
+			<h:link outcome="#{loginHandlerBean.logout()}">Log out</h:link>
+		</ui:define>
+		<ui:define name="content">
+			<h:outputText value="#{loginHandlerBean.checkIn()}" />
+			<div class="container">
+				<div class="col-lg-2">
+					<ul class="nav nav-pills nav-stacked">
+						<li><h:link outcome="/Investisor/tradList">Tradings</h:link></li>
+						<li><h:link outcome="/Investisor/companyList">Companies</h:link></li>
+						<li><h:link outcome="/Investisor/assetsList">Assets</h:link></li>
+						<li><h:link outcome="/Investisor/pfs">
+							<f:param name="#{loginHandlerBean.id}" value=""></f:param>
+								PortFolios
+							</h:link>
+						</li>
+						<li><h:link outcome="/CommonSearchEngine/Search">Search</h:link></li>
+					</ul>
+				</div>
+				<div class="col-lg-8">
+					<div class="content">
+						<ui:insert name="inv_content">
+							
+						</ui:insert>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

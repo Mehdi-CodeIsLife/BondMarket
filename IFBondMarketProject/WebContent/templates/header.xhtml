@@ -46,7 +46,9 @@
 				                    <h:link  styleClass="dropdown-toggle" data-toggle="dropdown">Assets </h:link>
 				                </li>
 				                <li class="investor-login">
-				                    <h:link  styleClass="uiHeaderLoginLink" outcome="/Investisor/login.xhtml">Investor Login</h:link>
+				                	<ui:insert name="header_link">
+				                		<h:link  styleClass="uiHeaderLoginLink" outcome="/common/login.xhtml">Investor Login</h:link>		
+				                	</ui:insert>				                    
 				                </li>
 				            </ul>
 				        </div>
