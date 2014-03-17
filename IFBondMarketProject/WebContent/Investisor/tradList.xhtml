@@ -17,38 +17,44 @@
 						<!-- column header -->
 						<f:facet name="header">#ID</f:facet>
 						<!-- row record -->
-    				#{t.id}
-    			</h:column>
+    					#{t.id}
+    				</h:column>
 
 					<h:column>
 						<f:facet name="header">Called At</f:facet>
     				#{t.calledAt}
-    			</h:column>
+    				</h:column>
 
 					<h:column>
 						<f:facet name="header">Owner</f:facet>
     				#{t.investisorByOwner.username}
-    			</h:column>
+    				</h:column>
 
 					<h:column>
 						<f:facet name="header">price</f:facet>
     				#{t.price}
-    			</h:column>
+    				</h:column>
 					<h:column>
 						<f:facet name="header">Asset</f:facet>
     				#{t.asset.id}
-    			</h:column>
+    				</h:column>
 					<h:column>
 						<f:facet name="header">Asset</f:facet>
 						<h:link outcome="/Investisor/trad">
 							<f:param name="id" value="#{t.id}"></f:param>
-    						Coucou
-    				</h:link>
+						</h:link>
 					</h:column>
 					<h:column>
 						<f:facet name="header">Quantity</f:facet>
-    				#{t.quantity}
-    			</h:column>
+   						#{t.quantity}
+   					</h:column>
+   					<h:column>
+						<f:facet name="header">Action</f:facet>
+   						<h:commandButton action="#{tradController.buy(t)}" value="Buy it" 
+   							rendered="#{t.class.simpleName == 'Transaction'}"/>
+						<h:commandButton action="#{tradController.bid(t)}" value="Bid it" 
+   							rendered="#{t.class.simpleName == 'Auction'}"/>
+   					</h:column>
 				</h:dataTable>
 			</ui:fragment>
 		</ui:define>

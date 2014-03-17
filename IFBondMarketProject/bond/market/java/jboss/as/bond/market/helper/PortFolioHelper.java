@@ -51,6 +51,10 @@ public class PortFolioHelper  {
 	}
 	
 	
+	public List<Portfolio> getMyPFs(int id){
+		return pr.getMyPortFolios(id);
+	}
+	
 	
 	
 	

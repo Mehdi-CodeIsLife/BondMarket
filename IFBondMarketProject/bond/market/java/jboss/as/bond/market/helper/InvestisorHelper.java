@@ -8,6 +8,8 @@ import javax.ejb.Stateful;
 import javax.persistence.NoResultException;
 
 import jboss.as.bond.market.model.Investisor;
+import jboss.as.bond.market.model.Portfolio;
+import jboss.as.bond.market.model.PortfolioLine;
 import jboss.as.bond.market.model.Profile;
 import jboss.as.bond.market.model.Role;
 import jboss.as.bond.market.repository.InvestisorRepository;
@@ -25,7 +27,16 @@ public class InvestisorHelper  {
 	private RoleRepository roleRep;
 	
 	@EJB
-	UserHelper uh;
+	private PortFolioHelper ph;
+	
+	@EJB
+	private AssetHelper ah;
+	
+	@EJB
+	private UserHelper uh;
+	
+	@EJB
+	private PortFolioLineHelper plh;
 	
 	public InvestisorHelper() {
 	}
@@ -81,9 +92,20 @@ public class InvestisorHelper  {
 		return invRep.findAll();
 	}
 
-	public void remove(Investisor inv2) {
-		// TODO Auto-generated method stub
-		
+	public void remove(Investisor inv2) {		
+	}
+
+	public void excuteTrad(int inv_id, int asset_id, int quantity) {
+		List<Portfolio> myPfs = ph.getMyPFs(inv_id);
+		if(myPfs != null){
+			Portfolio mainP = myPfs.get(0);
+			PortfolioLine pfl = new PortfolioLine();
+			pfl.setPf(mainP);
+			pfl.setQuantity(quantity);
+			pfl.setAsset(ah.find(asset_id));
+			mainP.addPFLine(pfl);
+			plh.save(pfl);
+		}
 	}
 	
 	

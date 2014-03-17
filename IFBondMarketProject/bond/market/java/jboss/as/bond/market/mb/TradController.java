@@ -5,8 +5,11 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
+import jboss.as.bond.market.helper.InvestisorHelper;
+import jboss.as.bond.market.helper.TradHelper;
 import jboss.as.bond.market.model.Asset;
 import jboss.as.bond.market.model.Investisor;
 import jboss.as.bond.market.model.Trad;
@@ -19,6 +22,12 @@ public class TradController {
 	@EJB
 	private TradRepository tr;
 	
+	@EJB
+	private TradHelper th;
+	
+	@EJB
+	private InvestisorHelper ih;
+	
 	public TradController() {}
 	
 	private int id;
@@ -30,13 +39,43 @@ public class TradController {
 	private Investisor buyer;
 	private Investisor owner;
 	
+	@ManagedProperty(value = "#{param.id}")
+	private int inv_id;
+	@ManagedProperty(value = "#{param.asset_id}")
+	private int asset_id;
 	
+	public void buy(Trad t){
+		th.buyTransaction(t, inv_id);
+	}
 	
+	public void bid(Trad t){
+		th.bidAuction(t, inv_id);
+	}
 	
-	
-	
+	public int getInv_id() {
+		return inv_id;
+	}
+
+	public void setInv_id(int inv_id) {
+		this.inv_id = inv_id;
+	}
+
+	public int getAsset_id() {
+		return asset_id;
+	}
+
+	public void setAsset_id(int asset_id) {
+		this.asset_id = asset_id;
+	}
+
 	public List<Trad> trads(){
 		return tr.findAll();
+	}
+	
+	public void investisorButFromCompany(){
+		if(this.inv_id != 0 && this.asset_id != 0){
+			ih.excuteTrad(inv_id, asset_id, quantity);
+		}
 	}
 	
 	
