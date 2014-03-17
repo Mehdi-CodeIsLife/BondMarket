@@ -3,22 +3,18 @@ package jboss.as.bond.market.helper;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.ejb.Stateful;
-import javax.faces.context.FacesContext;
+import javax.ejb.Stateless;
 
 import jboss.as.bond.market.model.Investisor;
 import jboss.as.bond.market.model.Portfolio;
 import jboss.as.bond.market.repository.PortfolioRepository;
 
 
-@Stateful
+@Stateless
 public class PortFolioHelper  {
 	
 	@EJB
 	private PortfolioRepository pr;
-	
-	@EJB
-	private InvestisorHelper ih;
 	
 	private Portfolio pf;
 	
@@ -35,11 +31,11 @@ public class PortFolioHelper  {
 	}
 	
 	public Investisor getInvestisorById(int id){
-		return ih.getById(id);
+		return pr.getById(id);
 	}
 	
-	public void save(){
-		pr.save(this.pf);
+	public void save(Portfolio prf){
+		pr.save(prf);
 	}
 
 	public Portfolio getPf() {
@@ -48,6 +44,10 @@ public class PortFolioHelper  {
 
 	public void setPf(Portfolio pf) {
 		this.pf = pf;
+	}
+	
+	public void remove(Portfolio f){
+		pr.remove(f);
 	}
 	
 	

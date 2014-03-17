@@ -31,6 +31,10 @@ public class TradController {
 	private Investisor owner;
 	
 	
+	
+	
+	
+	
 	public List<Trad> trads(){
 		return tr.findAll();
 	}

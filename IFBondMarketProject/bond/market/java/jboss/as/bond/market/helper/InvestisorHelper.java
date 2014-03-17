@@ -1,6 +1,7 @@
 package jboss.as.bond.market.helper;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
@@ -23,15 +24,24 @@ public class InvestisorHelper  {
 	@EJB
 	private RoleRepository roleRep;
 	
+	@EJB
+	UserHelper uh;
+	
 	public InvestisorHelper() {
 	}
-
+	
+	public void excuteTrad(){}
+	
 	public void bindUser(Investisor investisor){
 		this.setInv(investisor);
 	}
 	
 	public Investisor getById(int id){
 		return this.invRep.find(id);
+	}
+	
+	public boolean checkEmailAvailable(String email){
+		return uh.checkEmailAvailable(email);
 	}
 	
 	public void buildInvestisor(){
@@ -55,7 +65,8 @@ public class InvestisorHelper  {
 	}
 	
 	public void save(Investisor user){
-		invRep.save(user);
+		if(checkEmailAvailable(user.getEmail()))
+			invRep.save(user);
 	}
 	
 	public Investisor getInv() {
@@ -64,6 +75,15 @@ public class InvestisorHelper  {
 
 	public void setInv(Investisor inv) {
 		this.inv = inv;
+	}
+
+	public List<Investisor> findAll() {
+		return invRep.findAll();
+	}
+
+	public void remove(Investisor inv2) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

@@ -4,34 +4,51 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core">
 <h:body>
 	<ui:composition template="/templates/base.xhtml">
-
+		<h:outputText value="#{param['id']}" />
 		<ui:define name="header_link">
 			<h:link outcome="/Investisor/inv_dashboard">Your Dashboard</h:link>
+		</ui:define>
+		<ui:define name="header_link_logout">
 			<h:link outcome="#{loginHandlerBean.logout()}">Log out</h:link>
 		</ui:define>
 		<ui:define name="content">
-			<h:outputText value="#{loginHandlerBean.checkIn()}" />
 			<div class="container">
+				<h:panelGroup rendered="not #{loginHandlerBean.userProfileActive}">
+					<div class="alert alert-danger">Your account is not
+						activated, you will not have any interactio</div>
+				</h:panelGroup>
+				
+				<f:metadata>
+    				<f:viewParam name="parameter" value="#{loginHandlerBean.id}" />
+				</f:metadata>
 				<div class="col-lg-2">
 					<ul class="nav nav-pills nav-stacked">
-						<li><h:link outcome="/Investisor/tradList">Tradings</h:link></li>
-						<li><h:link outcome="/Investisor/companyList">Companies</h:link></li>
-						<li><h:link outcome="/Investisor/assetsList">Assets</h:link></li>
+						<li><h:link outcome="/Investisor/tradList">
+						<f:param name="id" value="#{param['id']}"></f:param>
+						Tradings</h:link></li>
+						<li><h:link outcome="/Investisor/companyList">
+						<f:param name="id" value="#{param['id']}"></f:param>
+						Companies</h:link></li>
+						<li><h:link outcome="/Investisor/assetsList">
+						<f:param name="id" value="#{param['id']}"></f:param>
+						Assets</h:link></li>
 						<li><h:link outcome="/Investisor/pfs">
-							<f:param name="#{loginHandlerBean.id}" value=""></f:param>
-								PortFolios
-							</h:link>
-						</li>
+								<f:param name="id" value="#{param['id']}"></f:param>
+									PortFolios
+								</h:link></li>
 						<li><h:link outcome="/CommonSearchEngine/Search">Search</h:link></li>
 					</ul>
+
 				</div>
 				<div class="col-lg-8">
 					<div class="content">
 						<ui:insert name="inv_content">
-							
+							<div class="success">
+								Your Dashboard
+							</div>
 						</ui:insert>
 					</div>
 				</div>

@@ -3,28 +3,27 @@ package jboss.as.bond.market.mb;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ManagedProperty;
 
 import jboss.as.bond.market.model.Company;
 import jboss.as.bond.market.repository.CompanyRepository;
-import jboss.as.bond.market.service.LoginRequestHandler;
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class CompanyController {
 
 	@EJB
 	CompanyRepository cr;
 	
-	@EJB
-	LoginRequestHandler lrq;
-	
+	@ManagedProperty(value = "#{param.company_id}")
 	private int id;
 	private String name;
 	private String category;
 	private String description;
+	
+	
 
 	public String getName() {
 		return name;
@@ -45,10 +44,15 @@ public class CompanyController {
 		this.description = description;
 	}
 	
+	public Company fetchCompany(){
+		Company c = cr.find(this.getId());
+		this.setName(c.getName());
+		this.setCategory(c.getCategory());
+		this.setDescription(c.getDescription());
+		return c;
+	}
+	
 	public List<Company> getCompanies(){
-		System.out.println("**************************************");
-		System.out.println(lrq.getId());
-    	System.out.println("*********************************");
 		return cr.findAll();
 	}
 	

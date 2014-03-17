@@ -6,15 +6,13 @@
 
    <h:body>
    			
-   
+   		<h:outputText value="#{loginHandlerBean.id}"></h:outputText>
    		<ui:composition template="/Investisor/inv_dashboard.xhtml">
 			<ui:define name="inv_content">
 				<h2><h:outputText value="">Companies List:</h:outputText></h2>
 				<h:dataTable value="#{companyController.companies}" var="c"
-		    			styleClass="table table-hover">
- 				
- 				
- 				
+		    			styleClass="table table-hover"
+		    			rendered="#{loginHandlerBean.userProfileActive}">
     			<h:column>
     				<!-- column header -->
     				<f:facet name="header">#ID</f:facet>
@@ -25,7 +23,8 @@
     			<h:column>
     				<f:facet name="header">Company Name</f:facet>
     				<h:link outcome="/Investisor/Company">
-    					<f:param name="id" value="#{c.id}"></f:param>
+    					<f:param name="company_id" value="#{c.id}"></f:param>
+						<f:param name="id" value="#{param['id']}"></f:param>
     				#{c.name}
     				</h:link>
     			</h:column>
