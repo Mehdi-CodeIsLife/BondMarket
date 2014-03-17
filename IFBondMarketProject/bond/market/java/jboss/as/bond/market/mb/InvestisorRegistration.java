@@ -1,10 +1,13 @@
 package jboss.as.bond.market.mb;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import jboss.as.bond.market.helper.InvestisorHelper;
+import jboss.as.bond.market.model.Investisor;
 
 @ManagedBean
 @SessionScoped
@@ -37,7 +40,10 @@ public class InvestisorRegistration {
 		invHelper.save(invHelper.getInv());
 		return "confirm";
 	}
-
+	
+	public List<Investisor> allInv(){
+		return invHelper.findAll();
+	}
 	
 
 	public String getFirstname() {

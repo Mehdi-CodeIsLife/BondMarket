@@ -42,6 +42,11 @@ public class Portfolio implements java.io.Serializable {
 		this.pfLines = pfLines;
 	}
 
+	public Portfolio(Investisor byId, String title2) {
+		this.investisor = byId;
+		this.title = title2;
+	}
+
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)

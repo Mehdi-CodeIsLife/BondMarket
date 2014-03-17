@@ -5,24 +5,29 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 
+import jboss.as.bond.market.helper.InvestisorHelper;
 import jboss.as.bond.market.helper.PortFolioHelper;
 import jboss.as.bond.market.model.Portfolio;
 
 @SuppressWarnings("serial")
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class PortFolioController implements Serializable{
 	
 	@EJB
 	private PortFolioHelper ph;
 	
+	@EJB
+	private InvestisorHelper invHel;
 	
-	private int id;
+	
 	private String title;
+	@ManagedProperty(value = "#{param.id}")
 	private int owner;
+	
 	
 	public int getOwner() {
 		return owner;
@@ -31,12 +36,7 @@ public class PortFolioController implements Serializable{
 		this.owner = owner;
 	}
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+	
 	public String getTitle() {
 		return title;
 	}
@@ -45,19 +45,23 @@ public class PortFolioController implements Serializable{
 	}
 	
 	public List<Portfolio> getMyPfs(){	
-		System.out.println("**************************************");
-		System.out.println(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("username"));
-    	System.out.println("*********************************");
-    	
-//    	if((Integer) session.getAttribute("id") != 0)
-//			return ph.getMyPortFolios((Integer) session.getAttribute("id"));
+		if( this.getOwner() != 0){
+			return  ph.getMyPortFolios(this.getOwner());
+		}
 		return null;
 	}
 	
 	public String create(){
-		ph.bind(this.getTitle(), this.getOwner());
-		ph.save();
-		return "success";
+		if( this.getOwner() != 0){
+			Portfolio prf = new Portfolio(invHel.getById(this.getOwner()), invHel.getById(this.getOwner()).getUsername()+"_PF");
+			ph.save(prf);
+			return "success";
+		}
+		return null;
+	}
+	
+	public void remove(Portfolio index){
+		ph.remove(index);	
 	}
 	
 	

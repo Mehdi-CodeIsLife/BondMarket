@@ -2,6 +2,7 @@ package jboss.as.bond.market.repository;
 
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -9,6 +10,8 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import jboss.as.bond.market.helper.InvestisorHelper;
+import jboss.as.bond.market.model.Investisor;
 import jboss.as.bond.market.model.Portfolio;
 import jboss.as.bond.market.model.PortfolioLine;
 
@@ -21,6 +24,9 @@ public class PortfolioRepository {
 	@PersistenceContext
 	EntityManager em;
 	
+	@EJB
+	InvestisorHelper ih;
+	
 	
 	public Portfolio findById(Long id) {
         return em.find(Portfolio.class, id);
@@ -30,7 +36,7 @@ public class PortfolioRepository {
 		CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Portfolio> criteria = cb.createQuery(Portfolio.class);
         Root<Portfolio> pfs = criteria.from(Portfolio.class);
-        criteria.select(pfs).where(cb.equal(pfs.get("owner").get("id"), id));
+        criteria.select(pfs).where(cb.equal(pfs.get("investisor"), id));
         return em.createQuery(criteria).getResultList();
 	}
 	
@@ -46,7 +52,16 @@ public class PortfolioRepository {
     
     public void save(Portfolio p){
     	em.persist(p);
+    	em.flush();
     }
-	
+    
+    public void remove(Portfolio p){
+    	em.remove(em.contains(p) ? p : em.merge(p));
+    }
+
+    public Investisor getById(int id) {
+		return ih.getById(id);
+	}
+
 	
 }

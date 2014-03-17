@@ -20,20 +20,24 @@
 
 						<h:form>
 						    <h:outputLabel for="usernameInput">
-						        #{bundle['login.username']}:
+						        Email
 						    </h:outputLabel>
 						    <h:inputText id="usernameInput" value="#{loginHandlerBean.username}" 
 						                 required="true" />
 						    <br />
 						    <h:outputLabel for="passwordInput">
-						        #{bundle['login.password']}:
+						        Password
 						    </h:outputLabel>
 						    <h:inputSecret id="passwordInput" value="#{loginHandlerBean.password}" 
 						                   required="true" />
 						    <br />
-						    <h:commandButton value="${bundle['login.submit']}" 
+						    <h:commandButton value="Sign In" 
 						                     action="#{loginHandlerBean.login()}" />
 						</h:form>
+						
+						<div class="primary">
+							<h:link outcome="/Investisor/signUp">Sign Up</h:link>
+						</div>
 					</div>
 				</div>
 			</div>

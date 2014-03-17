@@ -5,7 +5,9 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import jboss.as.bond.market.model.Asset;
 import jboss.as.bond.market.model.Company;
@@ -23,12 +25,14 @@ public class CompanyRepository {
 	public Company find(int id){
 		return em.find(Company.class, id);
 	}
-	
-	@SuppressWarnings("unchecked")
+
 	public List<Asset> getCompanyAsset(int id){
-		Query q =em.createQuery("Select a From Asset a LEFT JOIN a.company ON c.id = :id");
-		q.setParameter("id", id);
-		return q.getResultList();
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Asset> criteria = cb.createQuery(Asset.class);
+        Root<Asset> ur = criteria.from(Asset.class);
+        criteria.select(ur).where(cb.equal(ur.get("company"), id));
+        return em.createQuery(criteria).getResultList();
 	}
+	
 	
 }

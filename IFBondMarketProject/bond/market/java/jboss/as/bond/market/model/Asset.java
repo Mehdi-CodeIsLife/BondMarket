@@ -25,6 +25,7 @@ public  class Asset implements Serializable {
 	private int id;
 	private Company company;
 	private float strike;
+	private int quantity;
 	
 	private Set<PortfolioLine> pf_line = new HashSet<PortfolioLine>(0);
 
@@ -64,5 +65,13 @@ public  class Asset implements Serializable {
 
 	public void setPf_line(Set<PortfolioLine> pf_line) {
 		this.pf_line = pf_line;
+	}
+	@Column(name="quantity")
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 }

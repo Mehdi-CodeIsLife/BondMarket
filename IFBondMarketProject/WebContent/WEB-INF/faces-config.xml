@@ -12,4 +12,17 @@
   <managed-bean-class>jboss.as.bond.market.mb.LoginHandlerBean</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
+ <navigation-rule>
+  <from-view-id>/common/login.xhtml</from-view-id>
+  <navigation-case>
+   <description>inv_success</description>
+   <display-name>inv_success</display-name>
+   <from-outcome>inv_dashboard</from-outcome>
+   <to-view-id>/Investisor/inv_dashboard.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>dashboard</from-outcome>
+   <to-view-id>/Administrator/dashboard.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
 </faces-config>

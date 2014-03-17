@@ -11,6 +11,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import jboss.as.bond.market.model.Trad;
+import jboss.as.bond.market.model.Transaction;
 
 
 @Stateless
@@ -21,8 +22,6 @@ public class TradRepository {
 	@PersistenceContext
 	EntityManager em;
 		
-	
-	
 	public Trad findById(Long id) {
         return em.find(Trad.class, id);
     }
@@ -52,6 +51,18 @@ public class TradRepository {
         criteria.select(Trad).orderBy(cb.asc(Trad.get("name")));
         return em.createQuery(criteria).getResultList();
     }
+    
+    public void save(Trad t){
+    	em.persist(t);
+    }
+    
+    public Trad find(int id){
+    	return em.find(Trad.class, id);
+    }
 	
+    public void update(Trad t){
+    	if(t instanceof Transaction)
+    		em.persist(t);
+    }
 	
 }

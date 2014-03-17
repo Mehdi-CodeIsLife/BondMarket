@@ -1,6 +1,7 @@
 
     create table Asset (
         id integer not null auto_increment,
+        quantity integer,
         strike float,
         company integer,
         primary key (id)

@@ -3,14 +3,13 @@ package jboss.as.bond.market.model;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
@@ -20,6 +19,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import jboss.as.bond.market.util.Encryp;
 
 
 @SuppressWarnings("serial")
@@ -57,7 +58,7 @@ public  class User implements Serializable {
 		this.id = id;
 	}
 
-	@ManyToMany 
+	@ManyToMany(fetch=FetchType.EAGER) 
 	@JoinTable(name = "User_Role", joinColumns = { @JoinColumn(name = "user_id") },
 	inverseJoinColumns = { @JoinColumn(name = "role_id") })
 	public Set<Role> getRoles() {
@@ -116,26 +117,10 @@ public  class User implements Serializable {
 	}
 
 	public void setPassword(String password) {
-
-		MessageDigest md;
-		try {
-			md = MessageDigest.getInstance("MD5");
-			md.update(password.getBytes());
-
-			byte byteData[] = md.digest();
-
-			//convert the byte to hex format method 1
-			StringBuffer sb = new StringBuffer();
-			for (int i = 0; i < byteData.length; i++) {
-				sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
-			}
-			this.password = sb.toString();
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-
+		System.out.println("************************************");
+		System.out.println(new Encryp().encode(password));
+		System.out.println("************************************");
+		this.password = new Encryp().encode(password);
 	}
 
 }

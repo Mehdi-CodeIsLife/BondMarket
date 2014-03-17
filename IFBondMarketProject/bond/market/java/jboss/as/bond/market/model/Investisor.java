@@ -35,7 +35,7 @@ public class Investisor extends User{
 		
 	}
 
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL )
 	@JoinColumn(name = "profile")
 	public Profile getProfile() {
 		return this.profile;

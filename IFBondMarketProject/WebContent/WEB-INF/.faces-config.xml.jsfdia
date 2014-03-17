@@ -1,2 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<PROCESS model-entity="JSFProcess"/>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#common#login.xhtml"
+  PATH="/common/login.xhtml" SHAPE="88,128,50,25" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#common#login.xhtml:0" NAME="item"
+   PATH="/common/login.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="inv_dashboard::#Investisor#inv_dashboard.xhtml" NAME="output"
+    PATH="/Investisor/inv_dashboard.xhtml"
+    TARGET="rules:#Investisor#inv_dashboard.xhtml" TITLE="inv_dashboard" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="dashboard::#Administrator#dashboard.xhtml"
+    NAME="output1" PATH="/Administrator/dashboard.xhtml"
+    TARGET="rules:#Administrator#dashboard.xhtml" TITLE="dashboard" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Investisor#inv_dashboard.xhtml"
+  PATH="/Investisor/inv_dashboard.xhtml" SHAPE="448,72,50,25"
+  model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#Administrator#dashboard.xhtml"
+  PATH="/Administrator/dashboard.xhtml" SHAPE="448,168,50,25"
+  model-entity="JSFProcessGroup" persistent="true"/>
+</PROCESS>

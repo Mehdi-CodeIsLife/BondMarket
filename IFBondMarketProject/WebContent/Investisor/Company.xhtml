@@ -9,9 +9,8 @@
    
    		<ui:composition template="/Investisor/inv_dashboard.xhtml">
 			<ui:define name="inv_content">
-				<h2><h:outputText value="">Companies List:</h:outputText></h2>
-				<h:dataTable value="#{companyController.assets}" var="a"
-		    			styleClass="table table-hover">
+				<h2><h:outputText value="">Companies information:</h:outputText></h2>
+				<h:dataTable value="#{companyController.fetchCompany()}" var="c" styleClass="table table-hover">
  
     			<h:column>
     				<!-- column header -->
@@ -21,20 +20,49 @@
     			</h:column>
  
     			<h:column>
-    				<f:facet name="header">Company Name</f:facet>
-    				#{c.strike}
+    				<f:facet name="header">Name</f:facet>
+    				 #{c.name}
     			</h:column>
  
     			<h:column>
     				<f:facet name="header">Category</f:facet>
-    				#{c.company.name}
+    					#{c.category}
     			</h:column>		
     			<h:column>
     				<f:facet name="header">Category</f:facet>
-    				#{c.company.name}
+    					#{c.description}
     			</h:column>				
     		</h:dataTable>
+    		
+    		<div class="well">
+    			Company Assets
+    		</div>
+ 			
+ 			<h:dataTable value="#{companyController.assets}" var="a" styleClass="table table-hover info">
  
+    			<h:column>
+    				<!-- column header -->
+    				<f:facet name="header">#ID</f:facet>
+    				<!-- row record -->
+    				#{a.id}
+    			</h:column>
+    			<h:column>
+    				<f:facet name="header">Strike</f:facet>
+    					#{a.strike}
+    			</h:column>		
+    			<h:column>
+    				<f:facet name="header">quantity</f:facet>
+    					#{a.quantity}
+    			</h:column>	
+    			
+    			<h:column>
+    				<f:facet name="header">Buy</f:facet>
+    					<h:inputText value="" />
+    			</h:column>	
+    			
+    					
+    		</h:dataTable>
+ 			
 			</ui:define>
    		</ui:composition>
    </h:body>

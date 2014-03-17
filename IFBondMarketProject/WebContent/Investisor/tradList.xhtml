@@ -1,58 +1,58 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
 
-   <h:body>
-   		<ui:composition template="/Investisor/inv_dashboard.xhtml">
-			<ui:define name="inv_content">
-				<h2><h:outputText value="">Trading List:</h:outputText></h2>
+<h:body>
+	<ui:composition template="/Investisor/inv_dashboard.xhtml">
+		<ui:define name="inv_content">
+			<h2>
+				<h:outputText value="">Trading List:</h:outputText>
+			</h2>
+			<ui:fragment rendered="#{loginHandlerBean.userProfileActive}">
 				<h:dataTable value="#{tradController.trads()}" var="t"
-		    			styleClass="table table-hover">
-    			<h:column>
-    				<!-- column header -->
-    				<f:facet name="header">#ID</f:facet>
-    				<!-- row record -->
+					styleClass="table table-hover">
+					<h:column>
+						<!-- column header -->
+						<f:facet name="header">#ID</f:facet>
+						<!-- row record -->
     				#{t.id}
     			</h:column>
- 
-    			<h:column>
-    				<f:facet name="header">Called At</f:facet>
+
+					<h:column>
+						<f:facet name="header">Called At</f:facet>
     				#{t.calledAt}
     			</h:column>
-    			
-				<h:column>
-    				<f:facet name="header">Owner</f:facet>
+
+					<h:column>
+						<f:facet name="header">Owner</f:facet>
     				#{t.investisorByOwner.username}
     			</h:column>
-    			 
-    			<h:column>
-    				<f:facet name="header">price</f:facet>
+
+					<h:column>
+						<f:facet name="header">price</f:facet>
     				#{t.price}
     			</h:column>
-				<h:column>
-    				<f:facet name="header">Asset</f:facet>
+					<h:column>
+						<f:facet name="header">Asset</f:facet>
     				#{t.asset.id}
     			</h:column>
-    			<h:column>
-    				<f:facet name="header">Asset</f:facet>
-    					<h:link outcome="/Investisor/trad" >
-    						<f:param name="id" value="#{t.id}"></f:param>
+					<h:column>
+						<f:facet name="header">Asset</f:facet>
+						<h:link outcome="/Investisor/trad">
+							<f:param name="id" value="#{t.id}"></f:param>
     						Coucou
     				</h:link>
-    			</h:column>
-    			
- 					
- 					    				
- 					
-    			<h:column>
-    				<f:facet name="header">Quantity</f:facet>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Quantity</f:facet>
     				#{t.quantity}
     			</h:column>
-    		</h:dataTable>
-			</ui:define>
-   		</ui:composition>
-   </h:body>
-   
+				</h:dataTable>
+			</ui:fragment>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
 </html>

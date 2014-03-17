@@ -1,40 +1,52 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" 
-      xmlns:ui="http://java.sun.com/jsf/facelets" 
-      xmlns:h="http://java.sun.com/jsf/html" 
-      xmlns:f="http://java.sun.com/jsf/core">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 
-   <h:body>
-   		<ui:composition template="/Investisor/inv_dashboard.xhtml">
-			<ui:define name="inv_content">
-				<h:outputText value="#{loginHandlerBean.id}" />
-				<h2><h:outputText value="">Mon PortFolio</h:outputText></h2>
-				<h:dataTable value="#{portFolioController.getMyPfs()}" var="p" styleClass="table table-hover">
- 
-    			<h:column>
-    				<!-- column header -->
-    				<f:facet name="header">#ID</f:facet>
-    				<!-- row record -->
+<h:body>
+	<ui:composition template="/Investisor/inv_dashboard.xhtml">
+		<ui:define name="inv_content">
+			<h:form>
+				<ui:fragment rendered="#{loginHandlerBean.userProfileActive}">
+					<h2>
+						<h:outputText value="">Mon PortFolio</h:outputText>
+					</h2>
+					<h:dataTable value="#{portFolioController.getMyPfs()}" var="p"
+						styleClass="table table-hover">
+
+						<h:column>
+							<!-- column header -->
+							<f:facet name="header">#ID</f:facet>
+							<!-- row record -->
     				#{p.id}
     			</h:column>
- 
-    			<h:column>
-    				<f:facet name="header">Portfolio Title</f:facet>
-    				#{p.title}
-    			</h:column>
- 
-    			<h:column>
-    				<f:facet name="header">Voir le portfolio</f:facet>
-    				<h:link outcome="/Investisor/portfolio">
-    					<f:param name="id" value="#{p.id}"></f:param>
+
+						<h:column>
+							<f:facet name="header">Portfolio Title</f:facet>#{p.title}
+    				</h:column>
+						<h:column>
+							<f:facet name="header">Voir le portfolio</f:facet>
+							<h:link outcome="/Investisor/portfolio">
+								<f:param name="id" value="#{param['id']}"></f:param>
     				 + Details</h:link>
-    			</h:column>				
-    		</h:dataTable>
- 			<div class="well">
- 				<h:button value="#{portFolioController.create()}" >Creér un portefeuille</h:button>
- 			</div>
-			</ui:define>
-   		</ui:composition>
-   </h:body>
-   
+						</h:column>
+						<h:column>
+							<f:facet name="header">Action</f:facet>
+							<h:link outcome="#{portFolioController.remove(p)}">
+							<f:param name="id" value="#{param['id']}"></f:param>
+									Remove</h:link>
+						</h:column>
+					</h:dataTable>
+					<div class="well">
+					<h:link styleClass="btn btn-info lg" outcome="#{portFolioController.create()}"> Create new PortFolio
+								<f:param name="id" value="#{param['id']}"></f:param>
+					</h:link>
+					</div>
+				</ui:fragment>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
 </html>
