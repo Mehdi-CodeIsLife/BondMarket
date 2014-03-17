@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core">
+
+   <h:body>
+   			
+   		<h:outputText value="#{loginHandlerBean.id}"></h:outputText>
+   		<ui:composition template="/Administrator/dashboard.xhtml">
+			<ui:define name="admin_content">
+				<h2>Companies List</h2>
+				<h:dataTable value="#{companyController.companies}" var="c"
+		    			styleClass="table table-hover">
+    			<h:column>
+    				<!-- column header -->
+    				<f:facet name="header">#ID</f:facet>
+    				<!-- row record -->
+    				#{c.id}
+    			</h:column>
+ 
+    			<h:column>
+    				<f:facet name="header">Company Name</f:facet>
+    				<h:link outcome="/Investisor/Company">
+    					<f:param name="company_id" value="#{c.id}"></f:param>
+						<f:param name="id" value="#{param['id']}"></f:param>
+    				#{c.name}
+    				</h:link>
+    			</h:column>
+ 
+    			<h:column>
+    				<f:facet name="header">Category</f:facet>
+    				#{c.category}
+    			</h:column>
+ 
+    			<h:column>
+    				<f:facet name="header">Description</f:facet>
+    				#{c.description}
+    			</h:column>
+ 				<h:column>
+    				<f:facet name="header">Description</f:facet>
+    				#{c.description}
+    			</h:column>
+    			
+ 				
+    		</h:dataTable>
+ 
+			</ui:define>
+   		</ui:composition>
+   </h:body>
+   
+</html>

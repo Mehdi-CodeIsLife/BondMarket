@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<h:body>
+	<ui:composition template="/templates/base.xhtml">
+		<ui:define name="content">
+			<div class="container">
+				<div class="col-md-8 col-md-offset-2">
+					<div class="space"></div>
+					<div class="sm-p sm-landing-page">
+						<div class="success">Admin Registration</div>
+						<h:form>
+							<h:panelGrid columns="3" columnClasses="titleCell">
+								<h:outputLabel for="email" value="Email:" />
+								<h:inputText id="email" value="#{administratorController.email}">
+									<rich:validator />
+								</h:inputText>
+								<rich:message for="email" errorClass="invalid" />
+
+								<h:outputLabel for="username" value="User name:" />
+								<h:inputText id="username"
+									value="#{administratorController.username}">
+									<rich:validator />
+								</h:inputText>
+								<rich:message for="username" errorClass="invalid" />
+
+								<h:outputLabel for="password" value="Passowrd :" />
+								<h:inputSecret id="password" name="password"
+									value="#{administratorController.password}" required="true">
+								</h:inputSecret>
+								<rich:message for="password" errorClass="invalid" />
+
+								<h:outputLabel for="confirmPassword" value="confirmPassword :" />
+								<h:inputSecret id="confirmPassword" name="confirmPassword"
+									value="#{investisorRegistration.confirmPassword}"
+									required="true">
+								</h:inputSecret>
+								<rich:message for="confirmPassword" errorClass="invalid" />
+							</h:panelGrid>
+
+							<h:commandButton action="#{administratorController.create()}"
+								value="Add User" />
+							<div class="clearfix"></div>
+						</h:form>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core">
+
+   <h:body>
+   			
+   		<h:outputText value="#{loginHandlerBean.id}"></h:outputText>
+   		<ui:composition template="/Administrator/dashboard.xhtml">
+			<ui:define name="admin_content">
+				<h4>Pending Profiles List</h4>
+				<h:dataTable value="#{investisorRegistration.allInv()}" var="i"
+		    			styleClass="table table-hover">
+    			<h:column>
+    				<!-- column header -->
+    				<f:facet name="header">#ID</f:facet>
+    				<!-- row record -->
+    				#{i.id}
+    			</h:column>
+ 
+    			<h:column>
+    				<f:facet name="header">User name</f:facet>
+    				<h:link outcome="/Investisor/Company">
+    				#{i.username}
+    				</h:link>
+    			</h:column>
+ 
+    			<h:column>
+    				<f:facet name="header">Email</f:facet>
+    				#{i.email}
+    			</h:column>
+ 
+    			<h:column>
+    				<f:facet name="header">Use Derivatives ?</f:facet>
+    				#{i.profile.derivatives}
+    			</h:column>
+ 				<h:column>
+    				<f:facet name="header">Market Capitalization</f:facet>
+    				#{i.profile.market_capitalization}
+    			</h:column>
+    			<h:column>
+    				<f:facet name="header">Term Trading</f:facet>
+    				#{i.profile.termTrading}
+    			</h:column>
+ 				<h:column>
+    				<f:facet name="header">Action</f:facet>
+    				<h:commandButton styleClass="success" action="#{administratorController.decline(i)}" value="Validate" />
+    				<h:commandButton styleClass="danger" action="#{administratorController.validate(i)}" value="Decline" />
+    			</h:column>
+    		</h:dataTable>
+ 
+			</ui:define>
+   		</ui:composition>
+   </h:body>
+   
+</html>
