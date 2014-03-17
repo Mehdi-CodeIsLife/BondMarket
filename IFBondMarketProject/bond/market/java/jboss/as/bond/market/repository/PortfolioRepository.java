@@ -40,6 +40,7 @@ public class PortfolioRepository {
         return em.createQuery(criteria).getResultList();
 	}
 	
+	
     
     public List<PortfolioLine> findAllPFLines(int p_id) {
         CriteriaBuilder cb = em.getCriteriaBuilder();

@@ -18,6 +18,10 @@ public class AssetHelper {
 		ar.save(this.asset);
 	}
 	
+	public Asset find(int id){
+		return ar.find(id);
+	}
+	
 	public void bind(){
 		
 	}

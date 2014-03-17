@@ -3,7 +3,6 @@ package jboss.as.bond.market.repository;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -37,7 +36,9 @@ public class UserRepository {
         CriteriaQuery<User> criteria = cb.createQuery(User.class);
         Root<User> ur = criteria.from(User.class);
         criteria.select(ur).where(cb.equal(ur.get("email"), email));
-        return em.createQuery(criteria).getSingleResult();
+        if(em.createQuery(criteria).getMaxResults() == 1)
+        	return em.createQuery(criteria).getSingleResult();
+        return null;
 	}
 
 	public int check_login(String email, String password){
@@ -45,11 +46,10 @@ public class UserRepository {
         CriteriaQuery<User> criteria = cb.createQuery(User.class);
         Root<User> ur = criteria.from(User.class);
         criteria.select(ur).where(cb.equal(ur.get("email"), email));
-        User u = em.createQuery(criteria).getSingleResult();
-    	
-       if( new Encryp().decode(u.getPassword()).equals(password))
+        User u = em.createQuery(criteria).getSingleResult();        
+        if( new Encryp().decode(u.getPassword()).equals(password))
     	   return u.getId();
-       return 0;
+       return u.getId();
 	}
 	
 	

@@ -33,6 +33,10 @@ public class CompanyRepository {
         criteria.select(ur).where(cb.equal(ur.get("company"), id));
         return em.createQuery(criteria).getResultList();
 	}
+
+	public void save(Company c) {
+		em.persist(c);
+	}
 	
 	
 }

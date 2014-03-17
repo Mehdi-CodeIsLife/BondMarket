@@ -1,6 +1,4 @@
 package jboss.as.bond.market.model;
-// default package
-// Generated Mar 13, 2014 4:27:29 AM by Hibernate Tools 3.4.0.CR1
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -84,5 +82,8 @@ public class Portfolio implements java.io.Serializable {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
+	
+	public void addPFLine(PortfolioLine pfl){
+		this.getPfLines().add(pfl);
+	}
 }
